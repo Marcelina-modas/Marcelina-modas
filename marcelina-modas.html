@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marcelina Modas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bordo: #C23B6C;
+    --bordo-2: #E06B93;
+    --rosa: #F6C9D8;
+    --creme: #FFF3F6;
+    --dourado: #D88AA8;
+    --texto: #2A1E1B;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--creme);
+    color: var(--texto);
+    font-family: 'Jost', sans-serif;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+  .page {
+    width: 100%;
+    max-width: 460px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    padding: 0 28px 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Faixa decorativa animada no topo */
+  .faixa {
+    width: 100%;
+    height: 210px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 -28px;
+    width: calc(100% + 56px);
+    background: linear-gradient(160deg, var(--bordo) 0%, var(--bordo-2) 55%, var(--dourado) 130%);
+  }
+  .faixa::before, .faixa::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+  .faixa::before {
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(255,255,255,0.55), transparent 70%);
+    top: -90px; left: -60px;
+    animation: flutuar 9s ease-in-out infinite;
+  }
+  .faixa::after {
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%);
+    bottom: -100px; right: -50px;
+    animation: flutuar 11s ease-in-out infinite reverse;
+  }
+  @keyframes flutuar {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(14px,-10px) scale(1.06); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .faixa::before, .faixa::after { animation: none; }
+  }
+
+  .emblema {
+    position: relative;
+    margin-top: -78px;
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: var(--creme);
+    border: 3px solid var(--dourado);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 10px 26px rgba(194,59,108,0.25);
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+    animation: surgir 0.8s cubic-bezier(.22,1,.36,1) 0.15s forwards;
+  }
+  .emblema span {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 1.7rem;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    color: var(--bordo);
+  }
+  @keyframes surgir {
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 2.6rem;
+    margin: 20px 0 4px;
+    text-align: center;
+    color: var(--bordo);
+    opacity: 0;
+    animation: subir 0.7s ease-out 0.4s forwards;
+  }
+  .subtitulo {
+    text-align: center;
+    font-size: 0.98rem;
+    color: #6b524c;
+    max-width: 30ch;
+    line-height: 1.55;
+    margin: 0 0 30px;
+    opacity: 0;
+    animation: subir 0.7s ease-out 0.55s forwards;
+  }
+  @keyframes subir {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .linha-ornamento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 26px;
+    opacity: 0;
+    animation: subir 0.7s ease-out 0.65s forwards;
+  }
+  .linha-ornamento::before, .linha-ornamento::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rosa);
+  }
+  .linha-ornamento span {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    color: var(--dourado);
+    white-space: nowrap;
+  }
+
+  .links {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .botao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    text-decoration: none;
+    color: var(--creme);
+    background: linear-gradient(135deg, var(--bordo), var(--bordo-2));
+    padding: 16px 20px;
+    border-radius: 999px;
+    font-size: 1.02rem;
+    font-weight: 500;
+    box-shadow: 0 6px 16px rgba(194,59,108,0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    opacity: 0;
+    animation: subir 0.6s ease-out forwards;
+  }
+  .botao:nth-of-type(1) { animation-delay: 0.75s; }
+  .botao:nth-of-type(2) { animation-delay: 0.85s; }
+  .botao:hover, .botao:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(194,59,108,0.3);
+  }
+  .botao:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+  .botao .icone {
+    width: 22px; height: 22px;
+    flex-shrink: 0;
+  }
+  .botao.secundario {
+    background: transparent;
+    color: var(--bordo);
+    border: 1.5px solid var(--rosa);
+    box-shadow: none;
+  }
+  .botao.secundario:hover { background: rgba(246,201,216,0.35); }
+
+  .horario {
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #8a736c;
+    opacity: 0;
+    animation: subir 0.7s ease-out 0.95s forwards;
+  }
+  .horario strong { color: var(--bordo); font-weight: 500; }
+
+  footer {
+    margin-top: auto;
+    padding-top: 40px;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: #b39a92;
+    text-align: center;
+  }
+
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --creme: #1C1412;
+      --texto: #F3E8E3;
+    }
+  }
+  :root[data-theme="dark"] {
+    --creme: #1C1412;
+    --texto: #F3E8E3;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="faixa" aria-hidden="true"></div>
+  <div class="emblema"><span>Marcelina<br>Modas</span></div>
+
+  <h1>Marcelina Modas</h1>
+  <p class="subtitulo">Moda feminina e masculina com elegância e bom gosto, escolhida com carinho pra você.</p>
+
+  <div class="linha-ornamento"><span>FALE COM A GENTE</span></div>
+
+  <div class="links">
+    <a class="botao" href="https://wa.me/5587991035203" target="_blank" rel="noopener">
+      <svg class="icone" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C22 6.45 17.5 2 12.04 2zm0 18.12h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.14.82.84-3.06-.2-.31a8.19 8.19 0 0 1-1.26-4.37c0-4.53 3.69-8.22 8.23-8.22 2.2 0 4.26.86 5.82 2.41a8.16 8.16 0 0 1 2.41 5.82c0 4.53-3.7 8.24-8.2 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.8-.78.97-.14.16-.29.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.24.24-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.24-.87.85-.87 2.08 0 1.22.89 2.4 1.02 2.57.12.16 1.75 2.68 4.25 3.75.59.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+      Chamar no WhatsApp
+    </a>
+    <a class="botao secundario" href="https://wa.me/5587991035203?text=Ol%C3%A1%2C%20quero%20ver%20as%20novidades%20da%20Marcelina%20Modas" target="_blank" rel="noopener">
+      <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v12H7l-3 3V4z" stroke-linejoin="round"/></svg>
+      Ver novidades da coleção
+    </a>
+  </div>
+
+  <p class="horario"><strong>Atendimento</strong><br>Fale com a gente pelo WhatsApp a qualquer momento</p>
+
+  <footer>MARCELINA MODAS</footer>
+</div>
+</body>
+</html>
